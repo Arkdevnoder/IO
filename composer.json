@@ -1,0 +1,12 @@
+{
+    "name": "arknet/io",
+    "description": "PHP Image recognizer.",
+    "type": "library",
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Arknet\\IO\\": "src/"
+        }
+    }
+}
