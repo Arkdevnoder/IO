@@ -6,7 +6,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Arknet\\IO\\": "src/"
+            "Arknet\\": "src/"
         }
     }
 }
