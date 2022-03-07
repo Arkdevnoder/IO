@@ -2,7 +2,14 @@
 
 namespace Arknet;
 
+use Arknet\Traits\ImageHandlerTrait;
+
 class ImageHandler {
+
+	/**
+	 * Prepairing handler.
+	 */
+	use ImageHandlerTrait;
 
 	/**
 	 * @var string
@@ -18,6 +25,16 @@ class ImageHandler {
 	 * @var int|null
 	 */
 	protected $chunkSizeY = null;
+
+	/**
+	 * @var int|null
+	 */
+	protected $width = null;
+
+	/**
+	 * @var int|null
+	 */
+	protected $height = null;
 
 	/**
 	 * @param string $imageString
@@ -71,6 +88,22 @@ class ImageHandler {
 	public function getChunkSizeY(): ?int
 	{
 		return $this->chunkSizeY;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getWidth(): ?int
+	{
+		return $this->width;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getHeight(): ?int
+	{
+		return $this->height;
 	}
 
 }
