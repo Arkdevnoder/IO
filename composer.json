@@ -1,5 +1,6 @@
 {
     "name": "arknet/io",
+    "version": "0.0.1",
     "description": "PHP Image recognizer.",
     "type": "library",
     "minimum-stability": "stable",

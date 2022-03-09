@@ -2,14 +2,14 @@
 
 namespace Arknet;
 
-use Arknet\Traits\ImageHandlerTrait;
+use Arknet\Traits\ImageContainerTrait;
 
-class ImageHandler {
+class ImageContainer {
 
 	/**
 	 * Prepairing handler.
 	 */
-	use ImageHandlerTrait;
+	use ImageContainerTrait;
 
 	/**
 	 * @var string
@@ -37,6 +37,11 @@ class ImageHandler {
 	protected $height = null;
 
 	/**
+	 * @var array
+	 */
+	protected $chunks = [];
+
+	/**
 	 * @param string $imageString
 	 * @return ImageHandler
 	 */
@@ -58,7 +63,7 @@ class ImageHandler {
 	 * @param string $chunkSizeX
 	 * @return ImageHandler
 	 */
-	public function setChunkSizeX(?int $chunkSizeX): void
+	public function setChunkSizeX(?int $chunkSizeX): self
 	{
 		$this->chunkSizeX = $chunkSizeX;
 		return $this;
@@ -76,7 +81,7 @@ class ImageHandler {
 	 * @param string $chunkSizeY
 	 * @return ImageHandler
 	 */
-	public function setChunkSizeY(?int $chunkSizeY): void
+	public function setChunkSizeY(?int $chunkSizeY): self
 	{
 		$this->chunkSizeY = $chunkSizeY;
 		return $this;
@@ -104,6 +109,14 @@ class ImageHandler {
 	public function getHeight(): ?int
 	{
 		return $this->height;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getChunks(): array
+	{
+		return $this->chunks;
 	}
 
 }
