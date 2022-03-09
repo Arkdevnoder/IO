@@ -1,5 +1,5 @@
-<h1>IO - php ai image prediction composer library.</h1>
-<hr>
+<h!>IO - php ai image prediction composer library.</h1>
+<br>
 Example usage:
 <code>
 <?php
