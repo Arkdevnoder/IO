@@ -25,6 +25,7 @@ class IO {
 	{
 		return new PredictionModel;
 	}
+	
 
 	/**
 	 * Image handler class
