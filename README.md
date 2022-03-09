@@ -1,7 +1,6 @@
 # IO - php ai image prediction composer library.
----
 Example usage:
-```
+```php
 <?php
 
 require_once('vendor/autoload.php');
