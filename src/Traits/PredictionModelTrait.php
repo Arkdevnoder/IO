@@ -6,7 +6,7 @@ use Exception;
 
 trait PredictionModelTrait {
 
-	function prepare(){
+	function train(){
 		$directory = $this->getDirectory();
 		$scannedDirectory = array_diff(scandir($directory), array('..', '.'));	
 		var_dump($scannedDirectory);
