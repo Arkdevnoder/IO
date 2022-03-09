@@ -1,7 +1,7 @@
-<h!>IO - php ai image prediction composer library.</h1>
-<br>
+# IO - php ai image prediction composer library.
+---
 Example usage:
-<code>
+```
 <?php
 
 require_once('vendor/autoload.php');
@@ -29,4 +29,4 @@ if($data !== null){
 		  ->prepare();
 
 }
-</code>
+```
