@@ -58,7 +58,7 @@ trait ImageContainerTrait {
 	{
 		$aimX = $startX + $this->getChunkSizeX();
 		$aimY = $startY + $this->getChunkSizeY();
-		$fragment = imagecrop(
+		$fragment = self::fragmentar(imagecrop(
 			$image,
 			[
 				'x' => $startX,
@@ -66,18 +66,33 @@ trait ImageContainerTrait {
 				'width' => $this->getChunkSizeX(),
 				'height' => $this->getChunkSizeY()
 			]
-		);
-		ob_start();
-		imagepng($fragment);
-		$chunkedPicture = ob_get_contents();
-		ob_end_clean();
+		));
 		$this->chunks[] = [
 			'x1' => $startX,
 			'y1' => $startY,
 			'x2' => $aimX,
 			'y2' => $aimY,
-			'content' => $chunkedPicture,
+			'content' => $fragment
 		];
+	}
+
+	/**
+	 * @param GdImage $image
+	 * @return string
+	 */
+	function fragmentar(GdImage $fragmentOfGD){
+		ini_set('memory_limit', '-1');
+		$width = imagesx($fragmentOfGD);
+		$height = imagesy($fragmentOfGD);
+		for($x=0; $x < $width; $x++) {
+			for($y=0; $y < $height; $y++) {
+				$rgb = imagecolorat($fragmentOfGD, $x, $y);
+				$pixels[] = ($rgb >> 16) & 0xFF; // R
+				$pixels[] = ($rgb >> 8) & 0xFF; // G
+				$pixels[] = $rgb & 0xFF; // B
+			}
+		}
+		return $pixels;
 	}
 
 }

@@ -27,6 +27,11 @@ class PredictionModel {
 	protected $directory = '';
 
 	/**
+	 * @var array
+	 */
+	protected $model = [];
+
+	/**
 	 * @param string $directory
 	 * @return ImageHandler
 	 */
@@ -78,6 +83,14 @@ class PredictionModel {
 	public function getChunkSizeY(): ?int
 	{
 		return $this->chunkSizeY;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getModel(): array
+	{
+		return $this->model;
 	}
 
 }
