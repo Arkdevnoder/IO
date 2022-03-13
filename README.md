@@ -20,7 +20,7 @@ Example usage (server.php):
 require_once('vendor/autoload.php');
 
 $argv[1] ?? null
-? Arknet\IO::getDumper()->dumpPredictedImage($argv[1], 'red-tomato', 0.9, true)
+? Arknet\IO::getDumper()->dumpPredictedImage($argv[1], 'variant', 0.9, true)
 : Arknet\IO::getPredictionModel()->setDirectory(__DIR__.'\\models\\')->train(
 	function($nNeuronsFromLabels) { return [ $nNeuronsFromLabels*30,  30]; }
 );
