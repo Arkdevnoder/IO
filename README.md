@@ -2,17 +2,15 @@
 Installation:
 ```json
 {
-	/* ... */ 
 	"repositories": [
-        {
-            "type": "path",
-            "url": "/path/to/this/lib"
-        }
-    ],
-    "require": {
-        "arknet/io": "^0.0.1"
-    }
-    /* ... */ 
+		{
+			"type": "path",
+			"url": "/path/to/this/lib"
+		}
+	],
+	"require": {
+		"arknet/io": "^0.0.1"
+	}
 }
 ```
 Example usage (server.php):
@@ -27,7 +25,7 @@ $argv[1] ?? null
 	function($nNeuronsFromLabels) { return [ $nNeuronsFromLabels*30,  30]; }
 );
 ```
-##Commands:
+## Commands:
 Training:
 ```bash
 php server.php
