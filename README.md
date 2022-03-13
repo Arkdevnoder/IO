@@ -2,15 +2,15 @@
 Installation:
 ```json
 {
-	"repositories": [
-		{
-			"type": "path",
-			"url": "/path/to/this/lib"
-		}
-	],
-	"require": {
-		"arknet/io": "^0.0.1"
-	}
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/path/to/this/lib"
+    }
+  ],
+  "require": {
+    "arknet/io": "^0.0.1"
+  }
 }
 ```
 Example usage (server.php):

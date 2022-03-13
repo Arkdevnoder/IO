@@ -16,35 +16,35 @@ use Arknet\ImageContainer;
 
 class IO {
 
-	/**
-	 * Prediction model creator class
-	 * 
-	 * @return PredictionModel
-	 */
-	public static function getPredictionModel(): PredictionModel
-	{
-		return new PredictionModel;
-	}
-	
+    /**
+     * Prediction model creator class
+     * 
+     * @return PredictionModel
+     */
+    public static function getPredictionModel(): PredictionModel
+    {
+        return new PredictionModel;
+    }
+    
 
-	/**
-	 * Image handler class
-	 * 
-	 * @return ImageContainer
-	 */
-	public static function getImageContainer(): ImageContainer
-	{
-		return new ImageContainer;
-	}
+    /**
+     * Image handler class
+     * 
+     * @return ImageContainer
+     */
+    public static function getImageContainer(): ImageContainer
+    {
+        return new ImageContainer;
+    }
 
-	/**
-	 * Dumper class
-	 * 
-	 * @return Dumper
-	 */
-	public static function getDumper(): Dumper
-	{
-		return new Dumper;
-	}
+    /**
+     * Dumper class
+     * 
+     * @return Dumper
+     */
+    public static function getDumper(): Dumper
+    {
+        return new Dumper;
+    }
 
 }
