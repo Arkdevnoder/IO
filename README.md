@@ -1,31 +1,38 @@
 # IO - php ai image prediction composer library.
-Example usage:
+Installation:
+```json
+{
+	/* ... */ 
+	"repositories": [
+        {
+            "type": "path",
+            "url": "/path/to/this/lib"
+        }
+    ],
+    "require": {
+        "arknet/io": "^0.0.1"
+    }
+    /* ... */ 
+}
+```
+Example usage (server.php):
 ```php
 <?php
 
 require_once('vendor/autoload.php');
 
-$modelsDirectory = __DIR__."/models/";
-
-$data = isset($argv[1]) 
-	  ? file_get_contents($argv[1])
-	  : (string) null;
-
-if($data !== null){
-
-	$picture = Arknet\IO::getImageContainer();
-	$picture->setImage($data)
-	   		->setChunkSizeX(100)
-	   		->setChunkSizeY(100)
-	   		->prepare();
-
-} else {
-
-	$model = Arknet\IO::getPredictionModel();
-	$model->setDirectory($modelsDirectory)
-		  ->setChunkSizeX(100)
-		  ->setChunkSizeY(100)
-		  ->prepare();
-
-}
+$argv[1] ?? null
+? Arknet\IO::getDumper()->dumpPredictedImage($argv[1], 'red-tomato', 0.9, true)
+: Arknet\IO::getPredictionModel()->setDirectory(__DIR__.'\\models\\')->train(
+	function($nNeuronsFromLabels) { return [ $nNeuronsFromLabels*30,  30]; }
+);
+```
+##Commands:
+Training:
+```bash
+php server.php
+```
+Predicting:
+```bash
+php server.php path/to/image.png
 ```

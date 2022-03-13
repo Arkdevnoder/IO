@@ -14,17 +14,7 @@ class ImageContainer {
 	/**
 	 * @var string
 	 */
-	protected $imageString = '';
-
-	/**
-	 * @var int|null
-	 */
-	protected $chunkSizeX = null;
-
-	/**
-	 * @var int|null
-	 */
-	protected $chunkSizeY = null;
+	protected $imagePath = '';
 
 	/**
 	 * @var int|null
@@ -42,21 +32,31 @@ class ImageContainer {
 	protected $chunks = [];
 
 	/**
-	 * @param string $imageString
+	 * @var int|null
+	 */
+	protected $chunkSizeX = 30;
+
+	/**
+	 * @var int|null
+	 */
+	protected $chunkSizeY = 30;
+
+	/**
+	 * @param string $imageSPath
 	 * @return ImageHandler
 	 */
-	public function setImage(string $imageString): self
+	public function setImagePath(string $imagePath): self
 	{
-		$this->imageString = $imageString;
+		$this->imagePath = $imagePath;
 		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getImage(): string
+	public function getImagePath(): string
 	{
-		return $this->imageString;
+		return $this->imagePath;
 	}
 
 	/**

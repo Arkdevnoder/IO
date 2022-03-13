@@ -10,16 +10,16 @@ declare(strict_types = 1);
 
 namespace Arknet;
 
+use Arknet\Predictor;
 use Arknet\PredictionModel; 
 use Arknet\ImageContainer;
-use Arknet\Dumper;
 
 class IO {
 
 	/**
 	 * Prediction model creator class
 	 * 
-	 * @return void
+	 * @return PredictionModel
 	 */
 	public static function getPredictionModel(): PredictionModel
 	{
@@ -30,7 +30,7 @@ class IO {
 	/**
 	 * Image handler class
 	 * 
-	 * @return void
+	 * @return ImageContainer
 	 */
 	public static function getImageContainer(): ImageContainer
 	{
@@ -40,7 +40,7 @@ class IO {
 	/**
 	 * Dumper class
 	 * 
-	 * @return void
+	 * @return Dumper
 	 */
 	public static function getDumper(): Dumper
 	{

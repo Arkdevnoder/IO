@@ -12,8 +12,13 @@ trait ImageContainerTrait {
 	function prepare(): self
 	{
 		$this->chunks = [];
+		if(trim($this->getImagePath()) == ""){
+			throw new Exception('Empty image path');
+		}
 		try {
-			$image = @imagecreatefromstring($this->getImage());
+			$image = @imagecreatefromstring(
+				file_get_contents($this->getImagePath())
+			);
 			if ($image === false) {
 				throw new Exception('Malformed data');
 			}
@@ -58,7 +63,7 @@ trait ImageContainerTrait {
 	{
 		$aimX = $startX + $this->getChunkSizeX();
 		$aimY = $startY + $this->getChunkSizeY();
-		$fragment = self::fragmentar(imagecrop(
+		$crop = imagecrop(
 			$image,
 			[
 				'x' => $startX,
@@ -66,13 +71,16 @@ trait ImageContainerTrait {
 				'width' => $this->getChunkSizeX(),
 				'height' => $this->getChunkSizeY()
 			]
-		));
+		);
+		$fragment = self::fragmentar($crop);
 		$this->chunks[] = [
 			'x1' => $startX,
 			'y1' => $startY,
 			'x2' => $aimX,
 			'y2' => $aimY,
-			'content' => $fragment
+			'whiteFlag' => $fragment['whiteFlag'],
+			'content' => $fragment['image'],
+			'image' => $crop,
 		];
 	}
 
@@ -84,15 +92,39 @@ trait ImageContainerTrait {
 		ini_set('memory_limit', '-1');
 		$width = imagesx($fragmentOfGD);
 		$height = imagesy($fragmentOfGD);
+		$whiteFlag = true;
+
+		$edgeCount = 0;
+
 		for($x=0; $x < $width; $x++) {
 			for($y=0; $y < $height; $y++) {
 				$rgb = imagecolorat($fragmentOfGD, $x, $y);
-				$pixels[] = ($rgb >> 16) & 0xFF; // R
-				$pixels[] = ($rgb >> 8) & 0xFF; // G
-				$pixels[] = $rgb & 0xFF; // B
+				$r = ($rgb >> 16) & 0xFF;
+				$g = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+				$pixels[] = $r;
+				$pixels[] = $g;
+				$pixels[] = $b;
+				if(!(($r == 255 && $g == 255 && $b == 255) ||
+					($r == 0 && $g == 0 && $b == 0))){
+					$whiteFlag = false;
+				}
+
+				if($r == 0 && $g == 0 && $b == 0){
+					$edgeCount++;
+				}
 			}
 		}
-		return $pixels;
+
+		if($edgeCount > $width*$height*0.01){
+			$whiteFlag = true;
+		}
+
+		return [
+			'image' => $pixels,
+			'whiteFlag' => $whiteFlag,
+			'time' => time(),
+		];
 	}
 
 }

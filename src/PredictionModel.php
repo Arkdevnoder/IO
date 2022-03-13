@@ -12,16 +12,6 @@ class PredictionModel {
 	use PredictionModelTrait;
 
 	/**
-	 * @var int|null
-	 */
-	protected $chunkSizeX = null;
-
-	/**
-	 * @var int|null
-	 */
-	protected $chunkSizeY = null;
-
-	/**
 	 * @var string
 	 */
 	protected $directory = '';
@@ -30,6 +20,21 @@ class PredictionModel {
 	 * @var array
 	 */
 	protected $model = [];
+
+	/**
+	 * @var string
+	 */
+	protected $modelPath = './model';
+
+	/**
+	 * @var int|null
+	 */
+	protected $chunkSizeX = 30;
+
+	/**
+	 * @var int|null
+	 */
+	protected $chunkSizeY = 30;
 
 	/**
 	 * @param string $directory
@@ -69,7 +74,7 @@ class PredictionModel {
 
 	/**
 	 * @param string $chunkSizeY
-	 * @return ImageHandler
+	 * @return PredictionModel
 	 */
 	public function setChunkSizeY(?int $chunkSizeY): self
 	{
@@ -91,6 +96,24 @@ class PredictionModel {
 	public function getModel(): array
 	{
 		return $this->model;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getModelPath(): string
+	{
+		return $this->modelPath;
+	}
+
+	/**
+	 * @param string $path
+	 * @return PredictionModel
+	 */
+	public function setModelPath($path): self
+	{
+		$this->modelPath = $path;
+		return $this;
 	}
 
 }
