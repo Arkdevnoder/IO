@@ -29,7 +29,7 @@ class Dumper {
 		);
 
 		foreach($resultArray as $chunk){
-			if($chunk["result"]["red-tomato"] > $probability){
+			if($chunk["result"]["result"] > $probability){
 				imagefilledrectangle(
 					$image,
 					$chunk['x1'],
